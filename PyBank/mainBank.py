@@ -70,8 +70,6 @@ print(f"Average Change: ${str(round(monthly_avg_net_change,2))}")
 print(f"Greatest Increase in Profits : {greatest_month} (${str(greatest_increase)})")
 print(f"Greatest Decrease in Profits: {least_month} (${str(greatest_decrease)})")
 
-# establish path for output file
-
 # write the output file
 with open("Financial_Analysis.txt", "w") as file:
 
