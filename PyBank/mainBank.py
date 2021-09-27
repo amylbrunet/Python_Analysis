@@ -4,7 +4,6 @@ import csv
 
 # set path to find the csv file
 budget_data_csv = os.path.join('Resources', 'budget_data.csv')
-# budget_data_csv = "Resources/budget_data.csv"
 
 # Vaariables for the analysis
 total_months = 0
@@ -21,11 +20,17 @@ with open(budget_data_csv) as csvfile:
 
     # skip header row
     header = next(csvreader)
-    # print(header[0])
+    
     # Get information for the first row
     first_row = next(csvreader)
+
+    #find the total number of months
     total_months += 1
+
+    #find the net total of profit/loss
     net_total += int(first_row[1])
+
+    #add the profit in the first row to the count
     net_prev = int(first_row[1])
 
 
@@ -43,31 +48,44 @@ with open(budget_data_csv) as csvfile:
         net_change_list += [net_change]
         month_of_change += [row[0]]
     
-# calculate total number of months to find averages
+# calculate the amount of greatest increase in profits and find the month it occured
+greatest_increase = max(net_change_list)
+greatest_index = net_change_list.index(greatest_increase)
+greatest_month = month_of_change[greatest_index]
 
-# calculate total net amount of profit/loss to find averages
+# calculate the amounnt of greatest decrease in profits and find the month if occured
+greatest_decrease = min(net_change_list)
+least_index = net_change_list.index(greatest_decrease)
+least_month = month_of_change[least_index]
 
-# calculate average change in profit/loss per month
-
-# calculate the amount of greatest increase in profits
-    if net_change > greatest_increase[1]:
-        greatest_increase[0] = row[0]
-        greatest_increase[1] = net_change
-
-# find the date of the greatest increase in profits??
-
-# calculate the amounnt of greatest decrease in profits
-    if net_change < greatest_decrease[1]:
-        greatest_decrease[0] = row[0]
-        greatest_decrease[1] = net_change
-
+# Calculate avergae monthly net change
 monthly_avg_net_change = sum(net_change_list)/len(net_change_list)
-print("Net Monthly avg change: " , monthly_avg_net_change)
-print("Total months: ", total_months)
-print(f"Greatest increase : {greatest_increase[0]} greatest increase of {greatest_increase[1]}")
-# find the date of the greatest decrease in profits??
 
-# printing the financial analysis??
+# print the financial analysis
+print("Financial Analysis")
+print("-----------------------------")
+print(f"Total Months: {str(total_months)}")
+print(f"Total: ${str(net_total)}")
+print(f"Average Change: ${str(round(monthly_avg_net_change,2))}")
+print(f"Greatest Increase in Profits : {greatest_month} (${str(greatest_increase)})")
+print(f"Greatest Decrease in Profits: {least_month} (${str(greatest_decrease)})")
 
-# creating a text file out for analysis??
+# establish path for output file
+
+# write the output file
+with open("Financial_Analysis.txt", "w") as file:
+
+    file.write("Financial Analysis")
+    file.write("\n")
+    file.write("-----------------------------")
+    file.write("\n")
+    file.write(f"Total Months: {str(total_months)}")
+    file.write("\n")
+    file.write(f"Total: ${str(net_total)}")
+    file.write("\n")
+    file.write(f"Average Change: ${str(round(monthly_avg_net_change,2))}")
+    file.write("\n")
+    file.write(f"Greatest Increase in Profits : {greatest_month} (${str(greatest_increase)})")
+    file.write("\n")
+    file.write(f"Greatest Decrease in Profits: {least_month} (${str(greatest_decrease)})")
 
