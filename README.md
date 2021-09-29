@@ -4,7 +4,7 @@
 
 Python script for analyzing the financial records of a given company.
 
-The Python script analyzes the financial records calculates each of the following:
+The Python script analyzes the financial records and calculates each of the following:
 
 * The total number of months included in the dataset
 
@@ -18,7 +18,7 @@ The Python script analyzes the financial records calculates each of the followin
 
 ### PyPoll
 
-Python Script for analysis of small, rural town vote-counting process.
+Python script for analysis of a small, rural town vote counting process.
 
 The Python script analyzes the votes and calculates each of the following:
 
